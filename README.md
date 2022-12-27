@@ -2,5 +2,8 @@
 
 Systems:
 
+Same Project
+{
  .Simple dependency injection
  .Service Locator pattern
+}
