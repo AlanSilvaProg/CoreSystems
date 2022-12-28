@@ -1,4 +1,4 @@
-namespace EssentialSystems
+namespace CoreSystems.ServiceLocator
 {
     using System.Collections.Generic;
     using System;

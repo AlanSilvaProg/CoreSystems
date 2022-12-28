@@ -1,6 +1,7 @@
-using System;
-
-public interface IInject
+namespace CoreSystems.DependencyInjection
 {
-    public void GetDependency();
+    public interface IInject
+    {
+        public void GetDependency();
+    }
 }

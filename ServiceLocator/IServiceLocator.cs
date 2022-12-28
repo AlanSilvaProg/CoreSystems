@@ -1,4 +1,4 @@
-namespace EssentialSystems
+namespace CoreSystems.ServiceLocator
 {
     public interface IServiceLocator
     {

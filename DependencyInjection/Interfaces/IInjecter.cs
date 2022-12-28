@@ -1,4 +1,4 @@
-namespace EssentialSystems
+namespace CoreSystems.DependencyInjection
 {
     public interface IInjecter
     {

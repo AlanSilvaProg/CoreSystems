@@ -1,8 +1,9 @@
-namespace EssentialSystems
+namespace CoreSystems.DependencyInjection
 {
     using System;
     using System.Collections.Generic;
     using UnityEngine;
+    using CoreSystems.ServiceLocator;
 
     public class InjectDependency : MonoBehaviour, IInjecter
     {

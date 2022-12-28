@@ -1,6 +1,7 @@
-namespace EssentialSystems
+namespace CoreSystems.DependencyInjection
 {
     using UnityEngine;
+    using CoreSystems.ServiceLocator;
 
     public abstract class MonoInstaller : MonoBehaviour, IInstaller
     {
