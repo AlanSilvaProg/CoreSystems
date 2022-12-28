@@ -1,5 +1,5 @@
 {
-    "name": "CoreComponents.DependencyInjection",
+    "name": "CoreComponents.ServiceLocator",
     "rootNamespace": "",
     "references": [
         "GUID:91f9b2b5799caae4398dbe0160fcc67d"
