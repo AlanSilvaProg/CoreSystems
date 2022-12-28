@@ -1,8 +1,8 @@
 {
-    "name": "CoreComponents.DependencyInjection",
+    "name": "CoreSystems.DependencyInjection",
     "rootNamespace": "",
     "references": [
-        "GUID:91f9b2b5799caae4398dbe0160fcc67d"
+        "GUID:90070efb06821814b81a9be35d1fbb03"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
