@@ -3,6 +3,16 @@ namespace CoreSystems.DependencyInjection
     using UnityEngine;
     using CoreSystems.ServiceLocator;
 
+    public abstract class MonoInject : MonoBehaviour, IInject
+    {
+        protected virtual void Awake()
+        {
+            GetDependency();
+        }
+
+        public abstract void GetDependency();
+    }
+
     public class MonoInject<T> : MonoBehaviour, IInject
     {
 
