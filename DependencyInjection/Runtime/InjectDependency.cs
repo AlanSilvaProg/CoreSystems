@@ -4,7 +4,9 @@ namespace CoreSystems.DependencyInjection
     using System.Collections.Generic;
     using UnityEngine;
     using CoreSystems.ServiceLocator;
+    using CoreSystems.ExecutionOrderModifier;
 
+    [ScriptOrder(-20)]
     public class InjectDependency : MonoBehaviour, IInjecter
     {
         [SerializeField] private MonoInstaller[] _installers;

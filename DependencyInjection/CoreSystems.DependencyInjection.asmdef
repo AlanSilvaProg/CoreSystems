@@ -2,7 +2,8 @@
     "name": "CoreSystems.DependencyInjection",
     "rootNamespace": "",
     "references": [
-        "GUID:90070efb06821814b81a9be35d1fbb03"
+        "GUID:90070efb06821814b81a9be35d1fbb03",
+        "GUID:81f89533f37c70546a5f7e64b3d92760"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
