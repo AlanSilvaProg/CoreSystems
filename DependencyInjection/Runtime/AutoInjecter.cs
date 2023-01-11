@@ -5,13 +5,9 @@ namespace CoreSystems.DependencyInjection
     {
         [SerializeField] private IInject _injectComponent;
 
-        private void Reset()
-        {
-            _injectComponent = GetComponent<IInject>();
-        }
-
         private void Start()
         {
+            _injectComponent = GetComponent<IInject>();
             _injectComponent.GetDependency();
         }
     }
