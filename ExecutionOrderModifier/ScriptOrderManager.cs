@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 namespace CoreSystems.ExecutionOrderModifier
 {
     using System;
@@ -25,3 +26,4 @@ namespace CoreSystems.ExecutionOrderModifier
         }
     }
 }
+#endif
