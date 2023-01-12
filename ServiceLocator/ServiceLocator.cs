@@ -22,13 +22,7 @@ namespace CoreSystems.ServiceLocator
         {
             if (_services.ContainsKey(typeof(T)))
             {
-                if (_services[typeof(T)] == null)
-                {
-                    RemoveService<T>();
-                    RegisterService<T>(_services);
-                }
-                else
-                    throw new System.Exception($"The service with type {nameof(T)} was already registred");
+                _services[typeof(T)] = service;
             }
             else
                 _services.Add(typeof(T), service);
