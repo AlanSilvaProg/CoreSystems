@@ -8,4 +8,11 @@ Same Project
  .Service Locator pattern
 }
 
+Independent Systems
+{
+ .HUD System 
+ .Persistent System
+ .Observable System ( Observable Pattern )
+}
+
 Execution Script Order Modifier
