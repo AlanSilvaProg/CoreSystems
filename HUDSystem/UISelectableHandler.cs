@@ -1,4 +1,4 @@
-namespace CoreSystem.HUDSystem
+namespace CoreSystems.HUDSystem
 {
     using UnityEngine;
     using UnityEngine.UI;

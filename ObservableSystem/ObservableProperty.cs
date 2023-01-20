@@ -1,4 +1,4 @@
-namespace CoreSystem.ObservableSystem
+namespace CoreSystems.ObservableSystem
 {
     using System;
 
