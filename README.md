@@ -6,13 +6,10 @@ Same Project
 {
  .Simple dependency injection
  .Service Locator pattern
-}
-
-Independent Systems
-{
- .HUD System 
+ .HUD System
  .Persistent System
  .Observable System ( Observable Pattern )
 }
+
 
 Execution Script Order Modifier
