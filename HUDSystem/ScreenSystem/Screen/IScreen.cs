@@ -2,7 +2,7 @@ namespace CoreSystems.HUDSystem
 {
     public interface IScreen
     {
-        void Open();
+        void Open(IScreenManager manager);
         void Close();
     }
 }
@@ -11,7 +11,7 @@ namespace CoreSystems.HUDSystem.Extended
 {
     public interface IScreen
     {
-        void Open(params object[] parameters);
+        void Open(IScreenManager manager, params object[] parameters);
         void Close();
     }
 }
