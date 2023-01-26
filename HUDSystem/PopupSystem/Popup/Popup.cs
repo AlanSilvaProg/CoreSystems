@@ -2,7 +2,7 @@ namespace CoreSystems.HUDSystem
 {
     using UnityEngine;
 
-    public abstract partial class Popup : MonoBehaviour, IPopup
+    public abstract class Popup : MonoBehaviour, IPopup
     {
         public abstract void Open(IScreenManager manager);
 
