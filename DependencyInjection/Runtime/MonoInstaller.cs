@@ -5,13 +5,19 @@ namespace CoreSystems.DependencyInjection
 
     public abstract class MonoInstaller : MonoBehaviour, IInstaller
     {
+        [SerializeField] private bool _persistentInstaller;
         protected bool _installed = false;
 
-        public virtual void Awake()
+        protected virtual void Awake()
         {
             if (!_installed)
             {
                 InstallDependency(PublicServiceLocator.s_serviceLocator.GetService<IInjecter>());
+            }
+            if (_persistentInstaller)
+            {
+                PersistentDependencies.dependencies.Add(this);
+                DontDestroyOnLoad(this);
             }
         }
 

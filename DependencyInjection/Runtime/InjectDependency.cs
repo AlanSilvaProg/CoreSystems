@@ -33,6 +33,8 @@ namespace CoreSystems.DependencyInjection
         {
             foreach (IInstaller installer in _installers)
                 installer.InstallDependency(this);
+            foreach (IInstaller installer in PersistentDependencies.dependencies)
+                installer.InstallDependency(this);
         }
 
         public T GetDependency<T>()
