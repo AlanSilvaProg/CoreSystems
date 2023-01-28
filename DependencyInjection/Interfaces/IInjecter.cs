@@ -4,6 +4,8 @@ namespace CoreSystems.DependencyInjection
     {
         void StoreDependency<T>(T dependency);
         void InjectAllDependenciesOnScene();
+        void InstallAllDependenciesOnScene();
+        object[] GetFromContext();
         T GetDependency<T>();
     }
 }

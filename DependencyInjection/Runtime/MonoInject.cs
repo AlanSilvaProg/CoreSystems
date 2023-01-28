@@ -1,31 +1,40 @@
 namespace CoreSystems.DependencyInjection
 {
     using UnityEngine;
-    using CoreSystems.ServiceLocator;
+    using System.Collections.Generic;
 
-    public abstract class MonoInject : MonoBehaviour, IInject
+    public static class ToInject
     {
-        protected virtual void Awake()
-        {
-            GetDependency();
-        }
-
-        public abstract void GetDependency();
+        public static List<MonoBehaviour> objs = new List<MonoBehaviour>();
     }
 
+    [DefaultExecutionOrder(-300)]
+    public class MonoInject : MonoBehaviour, IInject
+    {
+        protected virtual void Awake()
+        {
+            ToInject.objs.Add(this);
+        }
+
+        private void OnDestroy()
+        {
+            ToInject.objs.Remove(this);
+        }
+    }
+
+    [DefaultExecutionOrder(-300)]
     public class MonoInject<T> : MonoBehaviour, IInject
     {
-
-        protected T dependency;
+        [Inject] protected T dependency;
 
         protected virtual void Awake()
         {
-            GetDependency();
+            ToInject.objs.Add(this);
         }
 
-        public void GetDependency()
+        private void OnDestroy()
         {
-            dependency = PublicServiceLocator.s_serviceLocator.GetService<IInjecter>().GetDependency<T>();
+            ToInject.objs.Remove(this);
         }
     }
 }

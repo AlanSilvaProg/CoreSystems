@@ -2,21 +2,39 @@ namespace CoreSystems.DependencyInjection
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
     using UnityEngine;
-    using CoreSystems.ServiceLocator;
-    using CoreSystems.ExecutionOrderModifier;
+    using UnityEngine.SceneManagement;
 
-    [ScriptOrder(-20)]
+    [DefaultExecutionOrder(-200)]
     public class InjectDependency : MonoBehaviour, IInjecter
     {
+        private enum Context { SCENE, PERSISTENCE, GAMEOBJECT }
+        [SerializeField] private Context _context;
         [SerializeField] private MonoInstaller[] _installers;
         private Dictionary<object, object> _installed = new Dictionary<object, object>();
-        private List<Action> dependencyInjections = new List<Action>();
+
+        private bool _isPersistenceContext => _context == Context.PERSISTENCE;
+        private bool _isGameObjectContext => _context == Context.GAMEOBJECT;
+
+        private void OnLevelWasLoaded(int level)
+        {
+            InjectAllDependenciesOnScene();
+        }
 
         private void Awake()
         {
-            PublicServiceLocator.s_serviceLocator.RegisterService<IInjecter>(this);
+            InstallAllDependenciesOnScene();
             InjectAllDependenciesOnScene();
+            if (_isPersistenceContext)
+                DontDestroyOnLoad(this);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
         }
 
         public void StoreDependency<T>(T dependency)
@@ -31,15 +49,46 @@ namespace CoreSystems.DependencyInjection
 
         public void InjectAllDependenciesOnScene()
         {
+            foreach (object obj in GetFromContext())
+            {
+                var fields = obj.GetType().GetFields();
+                foreach (var field in fields)
+                {
+                    foreach (var dependant in _installed.Values)
+                    {
+                        var customField = field.GetCustomAttribute<Inject>();
+                        if (customField == null || (customField.Injected && !_isGameObjectContext)) { continue; }
+                        field.SetValue(obj, dependant);
+                        customField.Injected = true;
+                    }
+                }
+                if (_isPersistenceContext)
+                    DontDestroyOnLoad((UnityEngine.Object)obj);
+            }
+        }
+
+        public void InstallAllDependenciesOnScene()
+        {
             foreach (IInstaller installer in _installers)
-                installer.InstallDependency(this);
-            foreach (IInstaller installer in PersistentDependencies.dependencies)
                 installer.InstallDependency(this);
         }
 
         public T GetDependency<T>()
         {
             return (T)_installed[typeof(T)];
+        }
+
+        public object[] GetFromContext()
+        {
+            if (_context == Context.SCENE || _isPersistenceContext)
+                return ToInject.objs.ToArray();
+            else
+            {
+                List<IInject> components = new List<IInject>();
+                GetComponentsInChildren(components);
+                GetComponents(components);
+                return components.ToArray();
+            }
         }
     }
 }
