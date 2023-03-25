@@ -1,7 +1,9 @@
 {
-    "name": "CoreSystems.ObservableSystem",
+    "name": "CoreSystems.GridBased2D",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "CoreSystems.DependencyInjection"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

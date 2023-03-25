@@ -2,7 +2,7 @@
     "name": "CoreSystems.HUDSystem",
     "rootNamespace": "",
     "references": [
-        "GUID:90070efb06821814b81a9be35d1fbb03"
+        "CoreSystems.ServiceLocator"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

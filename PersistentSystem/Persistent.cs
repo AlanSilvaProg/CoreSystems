@@ -6,9 +6,14 @@ namespace CoreSystems.PersistentSystem
 
     public class Persistent : IPersistent
     {
+        public const string SaveNameDefault = "SaveGameFile";
+
         private BinaryFormatter formatter = new BinaryFormatter();
 
-        private string GetPath(string saveFileName) => $"{Application.persistentDataPath}{saveFileName}.unitydata";
+        private string GetPath(string saveFileName)
+        {
+            return $"{Application.persistentDataPath}{saveFileName}.unitydata";
+        }
 
         private bool SaveAlreadyExist(string saveFileName) => File.Exists(GetPath(saveFileName));
 
